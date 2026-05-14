@@ -461,7 +461,7 @@ Item {
 
                             ctx.strokeStyle = "rgba(255,255,255,0.08)"
                             ctx.lineWidth = 1
-                            ctx.font = "12px Segoe UI"
+                            ctx.font = "12px sans-serif"
                             ctx.fillStyle = root.textMuted
                             for (var gy = 0; gy <= 5; ++gy) {
                                 var yy = top + gy * chartH / 5

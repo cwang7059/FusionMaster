@@ -463,7 +463,7 @@ Item {
 
                             ctx.strokeStyle = "rgba(255,255,255,0.08)"
                             ctx.lineWidth = 1
-                            ctx.font = "12px Segoe UI"
+                            ctx.font = "12px sans-serif"
                             ctx.fillStyle = root.textMuted
                             for (var y = 0; y <= 4; ++y) {
                                 var yy = top + y * chartH / 4

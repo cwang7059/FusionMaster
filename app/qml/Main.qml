@@ -6,10 +6,10 @@ import UITheme 1.0
 
 ApplicationWindow {
     id: rootWindow
-    width: 1280
-    height: 760
-    minimumWidth: 980
-    minimumHeight: 620
+    width: Math.min(1280, Screen.desktopAvailableWidth > 0 ? Screen.desktopAvailableWidth : 1280)
+    height: Math.min(760, Screen.desktopAvailableHeight > 0 ? Screen.desktopAvailableHeight : 760)
+    minimumWidth: Math.min(980, Screen.desktopAvailableWidth > 0 ? Screen.desktopAvailableWidth : 980)
+    minimumHeight: Math.min(620, Screen.desktopAvailableHeight > 0 ? Screen.desktopAvailableHeight : 620)
     visible: true
     title: "试验数据融合分析平台"
     flags: Qt.Window | Qt.FramelessWindowHint

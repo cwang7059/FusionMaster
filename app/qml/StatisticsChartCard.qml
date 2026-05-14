@@ -91,7 +91,7 @@ Rectangle {
         var chartH = Math.max(1, h - top - bottom)
         drawGrid(ctx, left, top, chartW, chartH, 8, 5)
 
-        ctx.font = "12px Segoe UI"
+        ctx.font = "12px sans-serif"
         ctx.fillStyle = root.textMuted
         ctx.fillText("方位角", left + chartW - 42, top + chartH + 28)
         ctx.fillText("俯仰角", 8, top + 12)
@@ -120,7 +120,7 @@ Rectangle {
         drawSeriesLine(ctx, root.seriesRows, "confidence", root.cyan, left, top, chartW, chartH)
         drawSeriesLine(ctx, root.seriesRows, "detection", root.purple, left, top, chartW, chartH)
 
-        ctx.font = "12px Segoe UI"
+        ctx.font = "12px sans-serif"
         ctx.fillStyle = root.textMuted
         for (var i = 0; i < root.seriesRows.length; i += 2) {
             var x = left + i * chartW / Math.max(1, root.seriesRows.length - 1)
@@ -168,7 +168,7 @@ Rectangle {
                 ctx.fillRect(startX + j * (barW + 5), top + chartH - bh, barW, bh)
             }
             ctx.fillStyle = root.textMuted
-            ctx.font = "12px Segoe UI"
+            ctx.font = "12px sans-serif"
             ctx.fillText(row.channel, left + i * groupW + groupW * 0.26, top + chartH + 24)
         }
         drawLegend(ctx, left + chartW - 330, 10, [["批次1", root.barColors[0]], ["批次2", root.barColors[1]], ["批次3", root.barColors[2]], ["批次4", root.barColors[3]], ["批次5", root.barColors[4]]])
@@ -198,7 +198,7 @@ Rectangle {
             ctx.stroke()
         }
 
-        ctx.font = "12px Segoe UI"
+        ctx.font = "12px sans-serif"
         ctx.fillStyle = root.textMuted
         for (var axis = 0; axis < count; ++axis) {
             var axisAngle = -Math.PI / 2 + axis * Math.PI * 2 / count
@@ -233,7 +233,7 @@ Rectangle {
     }
 
     function drawLegend(ctx, x, y, items) {
-        ctx.font = "12px Segoe UI"
+        ctx.font = "12px sans-serif"
         var offset = 0
         for (var i = 0; i < items.length; ++i) {
             ctx.fillStyle = items[i][1]
