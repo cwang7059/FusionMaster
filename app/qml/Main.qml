@@ -47,12 +47,91 @@ ApplicationWindow {
     property bool topWindowButtonsVisible: true
     property bool topTimeVisible: true
     property int currentTabIndex: 0
-    property int topNavItemCount: topNavModel.count
+    property var businessTabContributions: []
+    property var topNavModel: []
+    property int topNavItemCount: topNavModel && topNavModel.length !== undefined ? topNavModel.length : 0
 
     function ensureCurrentTabIndexValid() {
+        if (topNavItemCount <= 0) {
+            if (currentTabIndex !== 0) {
+                currentTabIndex = 0
+            }
+            return
+        }
+
         if (currentTabIndex < 0 || currentTabIndex >= topNavItemCount) {
             currentTabIndex = 0
         }
+    }
+
+    function contributionText(value) {
+        return String(value || "").trim()
+    }
+
+    function contributionSurface(item) {
+        return contributionText(item && item.surface ? item.surface : "panel").toLowerCase()
+    }
+
+    function contributionVisible(item) {
+        const contributionId = item ? (item.id || "") : ""
+        return windowManager
+                ? windowManager.isContributionVisible(contributionId)
+                : true
+    }
+
+    function contributionOrder(item) {
+        const navOrder = Number(item && item.navOrder !== undefined ? item.navOrder : -1)
+        if (!isNaN(navOrder) && navOrder >= 0) {
+            return navOrder
+        }
+
+        const order = Number(item && item.order !== undefined ? item.order : 0)
+        return isNaN(order) ? 0 : order
+    }
+
+    function contributionLabel(item) {
+        return contributionText((item && item.navText) || (item && item.title) || (item && item.pluginName) || "")
+    }
+
+    function filterBusinessTabContributions() {
+        if (typeof uiContributionsModel === "undefined" || !uiContributionsModel) {
+            return []
+        }
+
+        const tabs = uiContributionsModel.filter(function(item) {
+            const itemScreenIndex = Math.max(0, Number((item && item.screenIndex) || 0))
+            return contributionSurface(item) === "main_tab"
+                    && itemScreenIndex === 0
+                    && contributionVisible(item)
+        })
+
+        tabs.sort(function(lhs, rhs) {
+            const lhsOrder = contributionOrder(lhs)
+            const rhsOrder = contributionOrder(rhs)
+            if (lhsOrder !== rhsOrder) {
+                return lhsOrder - rhsOrder
+            }
+            return contributionLabel(lhs).localeCompare(contributionLabel(rhs))
+        })
+
+        return tabs
+    }
+
+    function buildTopNavModel(items) {
+        return (items || []).map(function(item) {
+            return {
+                "id": item.id || "",
+                "icon": contributionText(item.navIcon),
+                "text": contributionLabel(item),
+                "order": contributionOrder(item)
+            }
+        })
+    }
+
+    function refreshBusinessTabs() {
+        businessTabContributions = filterBusinessTabContributions()
+        topNavModel = buildTopNavModel(businessTabContributions)
+        ensureCurrentTabIndexValid()
     }
 
     function filterUiContributions(regionName) {
@@ -69,20 +148,20 @@ ApplicationWindow {
 
         return uiContributionsModel.filter(function(item) {
             const itemRegion = (item.region || "center").toLowerCase()
+            const itemSurface = contributionSurface(item)
             const itemScreenIndex = Math.max(0, Number(item.screenIndex || 0))
-            const contributionId = item.id || ""
             const regionVisible = windowManager ? windowManager.isRegionVisible(itemRegion) : true
-            const contributionVisible = windowManager
-                    ? windowManager.isContributionVisible(contributionId)
-                    : true
             return itemRegion === targetRegion
+                    && itemSurface === "panel"
                     && itemScreenIndex === targetScreenIndex
                     && regionVisible
-                    && contributionVisible
+                    && contributionVisible(item)
         })
     }
 
     function refreshUiContributions() {
+        refreshBusinessTabs()
+
         uiTopContributions = filterUiContributionsByScreen("top", 0)
         uiLeftContributions = filterUiContributionsByScreen("left", 0)
         uiCenterContributions = filterUiContributionsByScreen("center", 0)
@@ -101,7 +180,7 @@ ApplicationWindow {
             topRowVisible = true
             topLogoVisible = true
             topTitleVisible = true
-            topNavVisible = true
+            topNavVisible = topNavItemCount > 0
             topWindowButtonsVisible = true
             topTimeVisible = true
             return
@@ -112,7 +191,7 @@ ApplicationWindow {
         topLogoVisible = windowManager.isContributionVisible("app.top.logo")
         topTitleVisible = windowManager.isContributionVisible("app.top.title")
         topNavVisible = windowManager.isContributionVisible("app.top.nav")
-                || topNavItemCount > 0
+                && topNavItemCount > 0
         topWindowButtonsVisible = windowManager.isContributionVisible("app.top.window_buttons")
         topTimeVisible = windowManager.isContributionVisible("app.top.time")
     }
@@ -367,6 +446,11 @@ ApplicationWindow {
 
     onCurrentTabIndexChanged: ensureCurrentTabIndexValid()
 
+    onTopNavItemCountChanged: {
+        ensureCurrentTabIndexValid()
+        refreshTopRowVisibility()
+    }
+
     onVisibilityChanged: {
         scheduleWindowStateSync()
     }
@@ -418,17 +502,6 @@ ApplicationWindow {
         }
     }
 
-    ListModel {
-        id: topNavModel
-
-        ListElement { icon: "\u2302"; text: "首页总览" }
-        ListElement { icon: "\u25A3"; text: "数据调取与管理" }
-        ListElement { icon: "\u2387"; text: "多批次融合分析" }
-        ListElement { icon: "\u2699"; text: "算法优选与建模" }
-        ListElement { icon: "\u25A5"; text: "统计与可视化" }
-        ListElement { icon: "\u2699"; text: "系统管理" }
-    }
-
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 0
@@ -464,6 +537,7 @@ ApplicationWindow {
             scanWarningsTextValue: scanWarningsText
             skippedPluginsTextValue: skippedPluginsText
             lifecycleWarningsTextValue: lifecycleWarningsText
+            businessTabs: businessTabContributions
             uiContributionsData: uiContributionsModel
             topContributions: uiTopContributions
             leftContributions: uiLeftContributions
