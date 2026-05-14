@@ -1,0 +1,7 @@
+Plugin-SymbolicName: org.common.device.registry
+Plugin-Version: 0.1.0
+Plugin-Name: org_common_device_registry
+Plugin-Description: 设备注册中心插件
+Plugin-Vendor: owner_a
+Plugin-ActivationPolicy: eager
+Plugin-Activator: DeviceRegistryActivator

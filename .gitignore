@@ -1,0 +1,73 @@
+﻿# IDE / editor
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.opendb
+
+# Build directories
+/build/
+/build-*/
+/build_*/
+/cmake-build-*/
+/out/
+
+# CMake generated files
+/CMakeFiles/
+/CMakeCache.txt
+/cmake_install.cmake
+/compile_commands.json
+/CTestTestfile.cmake
+/Testing/
+/install_manifest.txt
+/Makefile
+**/CMakeFiles/
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/CTestTestfile.cmake
+**/Testing/
+**/build.ninja
+**/rules.ninja
+**/.ninja_deps
+**/.ninja_log
+
+# Qt generated files
+**/moc_*.cpp
+**/moc_*.h
+**/qrc_*.cpp
+**/ui_*.h
+**/*.qmlc
+**/*.jsc
+**/.qmake.stash
+
+# Common 插件本地构建产物（业务仓只保留源码）
+common/**/*.dll
+common/**/*.pdb
+common/**/*.lib
+common/**/*.exp
+common/**/*.ilk
+
+# Logs and temp
+*.log
+logs/
+*.tmp
+*.temp
+*.cache
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Keep binary deliverables in sdk/runtime folders
+!core/**/win-x64/**
+!common/**/win-x64/**
+!tools/plugin_generator.exe
+
+# third_party 需要完整提交，保证离线可编译
+!third_party/**
+

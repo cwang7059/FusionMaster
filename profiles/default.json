@@ -1,0 +1,41 @@
+{
+  "name": "历史数据融合分析极简配置",
+  "description": "临时仅加载历史数据融合分析及其必要依赖",
+  "plugins": [
+    "org_common_data_center",
+    "org_business_history_data_fusion_analysis"
+  ],
+  "ui": {
+    "menuBarVisible": false,
+    "toolBarVisible": false,
+    "statusBarVisible": true,
+    "titleBarVisible": true,
+    "secondaryWindowEnabled": false,
+    "statusText": "历史数据融合分析",
+    "regions": {
+      "top": false,
+      "left": false,
+      "center": true,
+      "right": false,
+      "bottom": false
+    },
+    "windowButtons": {
+      "minimize": true,
+      "maximize": true,
+      "restore": true,
+      "fullscreen": false,
+      "close": true
+    },
+    "contributions": {
+      "app.top.row": true,
+      "app.top.logo": true,
+      "app.top.title": true,
+      "app.top.nav": true,
+      "app.top.window_buttons": true,
+      "app.top.time": false,
+      "history_data_fusion_analysis.panel": true
+    },
+    "menuActions": [],
+    "toolBarActions": []
+  }
+}

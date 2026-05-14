@@ -1,0 +1,35 @@
+﻿<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/app/qml">
+  <file alias="qml/Main.qml">../qml/Main.qml</file>
+  <file alias="qml/AppTopBar.qml">../qml/AppTopBar.qml</file>
+  <file alias="qml/AppStatusBar.qml">../qml/AppStatusBar.qml</file>
+  <file alias="qml/AppMainContent.qml">../qml/AppMainContent.qml</file>
+  <file alias="qml/SystemOverviewView.qml">../qml/SystemOverviewView.qml</file>
+  <file alias="qml/DataManagementView.qml">../qml/DataManagementView.qml</file>
+  <file alias="qml/FusionAnalysisView.qml">../qml/FusionAnalysisView.qml</file>
+  <file alias="qml/AlgorithmOptimizationView.qml">../qml/AlgorithmOptimizationView.qml</file>
+  <file alias="qml/StatisticsView.qml">../qml/StatisticsView.qml</file>
+  <file alias="qml/SystemSettingsView.qml">../qml/SystemSettingsView.qml</file>
+  <file alias="qml/PrototypeActionButton.qml">../qml/PrototypeActionButton.qml</file>
+  <file alias="qml/PrototypeDateInputBlock.qml">../qml/PrototypeDateInputBlock.qml</file>
+  <file alias="qml/PrototypeTableCell.qml">../qml/PrototypeTableCell.qml</file>
+  <file alias="qml/StatisticsMetricPanel.qml">../qml/StatisticsMetricPanel.qml</file>
+  <file alias="qml/StatisticsChartCard.qml">../qml/StatisticsChartCard.qml</file>
+  <file alias="qml/SettingsSectionTitle.qml">../qml/SettingsSectionTitle.qml</file>
+  <file alias="qml/SettingsStatusLine.qml">../qml/SettingsStatusLine.qml</file>
+  <file alias="qml/NavigationPlaceholderView.qml">../qml/NavigationPlaceholderView.qml</file>
+  <file alias="qml/AppResizeHandles.qml">../qml/AppResizeHandles.qml</file>
+  <file alias="qml/SecondaryContributionWindow.qml">../qml/SecondaryContributionWindow.qml</file>
+  <file alias="qml/ContributionCard.qml">../qml/ContributionCard.qml</file>
+  <file alias="qml/ContributionHostPanel.qml">../qml/ContributionHostPanel.qml</file>
+  <file alias="qml/PluginComponentsView.qml">../qml/PluginComponentsView.qml</file>
+  <file alias="qml/DeviceManagementDetailView.qml">../qml/DeviceManagementDetailView.qml</file>
+</qresource>
+<qresource prefix="/app/assets">
+  <file alias="app_icon.png">app_icon.png</file>
+  <file alias="icons/window/minimize.svg">icons/window/minimize.svg</file>
+  <file alias="icons/window/maximize.svg">icons/window/maximize.svg</file>
+  <file alias="icons/window/restore.svg">icons/window/restore.svg</file>
+  <file alias="icons/window/close.svg">icons/window/close.svg</file>
+</qresource>
+</RCC>

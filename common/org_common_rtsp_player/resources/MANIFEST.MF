@@ -1,0 +1,7 @@
+Plugin-SymbolicName: org.common.rtsp.player
+Plugin-Version: 0.1.0
+Plugin-Name: RTSP Player
+Plugin-Description: Common RTSP packet player for runtime and replay
+Plugin-Vendor: owner_a
+Plugin-ActivationPolicy: eager
+Plugin-Activator: RtspPlayerActivator

@@ -1,0 +1,10 @@
+{
+  "name": "org_common_turntable_panel",
+  "version": "1.0.0",
+  "description": "转台右侧设备面板插件",
+  "library": "org_common_turntable_panel",
+  "dependencies": [
+    "plugin_api",
+    "org_common_device_console"
+  ]
+}

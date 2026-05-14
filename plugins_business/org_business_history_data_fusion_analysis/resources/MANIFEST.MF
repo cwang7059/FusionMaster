@@ -1,0 +1,8 @@
+Plugin-SymbolicName: org.business.history.data.fusion.analysis
+Plugin-Version: 1.0.0
+Plugin-Name: History Data Fusion Analysis
+Plugin-Description: Historical multi-batch trial data fusion analysis plugin
+Plugin-Vendor: JH Frontiers
+Plugin-ActivationPolicy: eager
+Plugin-Activator: HistoryDataFusionAnalysisActivator
+

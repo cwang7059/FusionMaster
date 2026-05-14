@@ -1,0 +1,8 @@
+{
+  "name": "org_common_rtsp_replay",
+  "version": "1.0.0",
+  "author": "owner_a",
+  "description": "RTSP拉流并通过消息总线发布，供记录重演使用",
+  "dependencies": ["plugin_api"],
+  "library": "org_common_rtsp_replay.dll"
+}

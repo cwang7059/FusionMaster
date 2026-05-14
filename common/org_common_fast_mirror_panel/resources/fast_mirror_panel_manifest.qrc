@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/org.common.fast.mirror.panel/qml">
+        <file alias="FastMirrorControlView.qml">../qml/FastMirrorControlView.qml</file>
+    </qresource>
+    <qresource prefix="/org.common.fast.mirror.panel/META-INF">
+        <file alias="MANIFEST.MF">MANIFEST.MF</file>
+    </qresource>
+</RCC>

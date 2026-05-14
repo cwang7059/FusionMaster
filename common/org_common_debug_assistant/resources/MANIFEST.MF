@@ -1,0 +1,7 @@
+Plugin-SymbolicName: org.common.debug.assistant
+Plugin-Version: 0.1.0
+Plugin-Name: Debug Assistant
+Plugin-Description: Common debug assistant plugin
+Plugin-Vendor: owner_a
+Plugin-ActivationPolicy: eager
+Plugin-Activator: DebugAssistantActivator

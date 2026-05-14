@@ -1,0 +1,8 @@
+﻿{
+  "name": "org_common_data_center",
+  "version": "0.1.0",
+  "author": "owner_a",
+  "description": "数据模型中心插件，统一注册和获取数据模型",
+  "dependencies": ["plugin_api"],
+  "library": "org_common_data_center"
+}

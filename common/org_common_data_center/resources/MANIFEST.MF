@@ -1,0 +1,7 @@
+﻿Plugin-SymbolicName: org.common.data.center
+Plugin-Version: 0.1.0
+Plugin-Name: org_common_data_center
+Plugin-Description: 数据模型中心插件
+Plugin-Vendor: owner_a
+Plugin-ActivationPolicy: eager
+Plugin-Activator: DataCenterActivator

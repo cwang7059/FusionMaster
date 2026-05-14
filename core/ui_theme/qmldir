@@ -1,0 +1,9 @@
+module UITheme
+singleton Theme 1.0 Theme.qml
+StyledButton 1.0 StyledButton.qml
+StyledCard 1.0 StyledCard.qml
+StyledInput 1.0 StyledInput.qml
+StyledTable 1.0 StyledTable.qml
+StyledComboBox 1.0 StyledComboBox.qml
+StyledTrendChart 1.0 StyledTrendChart.qml
+StyledTextArea 1.0 StyledTextArea.qml

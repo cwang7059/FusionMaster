@@ -1,0 +1,8 @@
+{
+  "name": "org_common_log_viewer",
+  "version": "0.1.0",
+  "author": "owner_a",
+  "description": "Common 日志显示插件",
+  "dependencies": ["plugin_api"],
+  "library": "org_common_log_viewer.dll"
+}

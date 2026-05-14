@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/org.common.encoder.panel/qml">
+        <file alias="EncoderControlView.qml">../qml/EncoderControlView.qml</file>
+    </qresource>
+    <qresource prefix="/org.common.encoder.panel/META-INF">
+        <file alias="MANIFEST.MF">MANIFEST.MF</file>
+    </qresource>
+</RCC>

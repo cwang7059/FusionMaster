@@ -1,0 +1,36 @@
+﻿{
+  "name": "项目极简界面示例",
+  "description": "仅保留中心业务区，隐藏菜单栏/工具栏/状态栏",
+  "plugins": [
+    "org_common_data_center",
+    "org_business_history_data_fusion_analysis"
+  ],
+  "ui": {
+    "menuBarVisible": false,
+    "toolBarVisible": false,
+    "statusBarVisible": false,
+    "titleBarVisible": true,
+    "secondaryWindowEnabled": false,
+    "statusText": "极简单屏模式",
+    "regions": {
+      "top": false,
+      "left": false,
+      "center": true,
+      "right": false,
+      "bottom": false
+    },
+    "windowButtons": {
+      "minimize": false,
+      "maximize": false,
+      "restore": false,
+      "fullscreen": false,
+      "close": true
+    },
+    "contributions": {
+      "example.overview": true,
+      "example.secondary": false
+    },
+    "menuActions": [],
+    "toolBarActions": []
+  }
+}

@@ -1,0 +1,23 @@
+﻿{
+  "name": "项目A示例",
+  "description": "网络接入 + 调试助手的单屏布局示例",
+  "plugins": [
+    "org_common_net_receiver",
+    "org_common_debug_assistant"
+  ],
+  "ui": {
+    "menuBarVisible": true,
+    "toolBarVisible": true,
+    "statusBarVisible": true,
+    "titleBarVisible": true,
+    "secondaryWindowEnabled": false,
+    "statusText": "项目A运行中",
+    "regions": {
+      "top": true,
+      "left": false,
+      "center": true,
+      "right": false,
+      "bottom": true
+    }
+  }
+}

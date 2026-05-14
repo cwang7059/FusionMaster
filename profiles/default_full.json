@@ -1,0 +1,65 @@
+{
+  "name": "默认配置-全量备份",
+  "description": "开发与调试加载全部插件，用于从临时极简配置恢复",
+  "plugins": [
+    "org_common_bus_monitor",
+    "org_common_data_center",
+    "org_common_debug_assistant",
+    "org_common_device_registry",
+    "org_common_log_viewer",
+    "org_common_net_receiver",
+    "org_common_record_replay",
+    "org_common_rtsp_player",
+    "org_common_rtsp_replay",
+    "org_common_serial_receiver",
+    "org_common_device_console",
+    "org_business_history_data_fusion_analysis",
+    "org_common_eddy_current_panel",
+    "org_common_encoder_panel",
+    "org_common_fast_mirror_panel",
+    "org_common_turntable_panel"
+  ],
+  "ui": {
+    "menuBarVisible": true,
+    "toolBarVisible": true,
+    "statusBarVisible": true,
+    "titleBarVisible": true,
+    "secondaryWindowEnabled": false,
+    "statusText": "系统就绪",
+    "regions": {
+      "top": true,
+      "left": true,
+      "center": true,
+      "right": true,
+      "bottom": true
+    },
+    "windowButtons": {
+      "minimize": true,
+      "maximize": true,
+      "restore": true,
+      "fullscreen": true,
+      "close": true
+    },
+    "contributions": {
+      "app.top.row": true,
+      "app.top.logo": true,
+      "app.top.title": true,
+      "app.top.nav": true,
+      "app.top.window_buttons": true,
+      "app.top.time": true
+    },
+    "menuActions": [
+      { "id": "menu.file", "text": "文件" },
+      { "id": "menu.view", "text": "视图" },
+      { "id": "menu.tools", "text": "工具" },
+      { "id": "menu.help", "text": "帮助" }
+    ],
+    "toolBarActions": [
+      { "id": "tool.refresh", "text": "刷新" },
+      { "id": "tool.layout", "text": "布局" },
+      { "id": "tool.log", "text": "日志" },
+      { "id": "tool.fullscreen", "text": "全屏", "command": "fullscreen" },
+      { "id": "tool.restore", "text": "还原", "command": "restore" }
+    ]
+  }
+}

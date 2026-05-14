@@ -1,0 +1,10 @@
+{
+  "name": "org_common_encoder_panel",
+  "version": "1.0.0",
+  "description": "编码器右侧设备面板插件",
+  "library": "org_common_encoder_panel",
+  "dependencies": [
+    "plugin_api",
+    "org_common_device_console"
+  ]
+}

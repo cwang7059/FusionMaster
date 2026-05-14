@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/org.common.turntable.panel/qml">
+        <file alias="TurntableControlView.qml">../qml/TurntableControlView.qml</file>
+    </qresource>
+    <qresource prefix="/org.common.turntable.panel/META-INF">
+        <file alias="MANIFEST.MF">MANIFEST.MF</file>
+    </qresource>
+</RCC>

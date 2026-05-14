@@ -1,0 +1,39 @@
+﻿{
+  "name": "项目双屏示例",
+  "description": "主屏显示主业务组件，副屏显示扩展组件",
+  "plugins": [
+    "org_common_data_center",
+    "org_business_history_data_fusion_analysis",
+    "org_common_debug_assistant"
+  ],
+  "ui": {
+    "menuBarVisible": false,
+    "toolBarVisible": false,
+    "statusBarVisible": true,
+    "titleBarVisible": true,
+    "secondaryWindowEnabled": true,
+    "statusText": "双屏联动模式",
+    "regions": {
+      "top": false,
+      "left": false,
+      "center": true,
+      "right": false,
+      "bottom": false
+    },
+    "windowButtons": {
+      "minimize": true,
+      "maximize": true,
+      "restore": true,
+      "fullscreen": true,
+      "close": true
+    },
+    "contributions": {
+      "example.overview": true,
+      "example.secondary": true
+    },
+    "toolBarActions": [
+      { "id": "tool.fullscreen", "text": "全屏", "command": "fullscreen" },
+      { "id": "tool.restore", "text": "还原", "command": "restore" }
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Plugin-SymbolicName: org.common.fast.mirror.panel
+Plugin-Version: 1.0.0
+Plugin-Name: org_common_fast_mirror_panel
+Plugin-Description: Fast mirror device right panel plugin
+Plugin-Vendor: Reycon
+Plugin-ActivationPolicy: eager
+Plugin-Activator: FastMirrorPanelActivator

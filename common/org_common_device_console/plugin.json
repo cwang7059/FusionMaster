@@ -1,0 +1,11 @@
+{
+  "name": "org_common_device_console",
+  "version": "1.0.0",
+  "description": "通用设备控制台插件，提供设备抽象层的最小控制界面",
+  "library": "org_common_device_console",
+  "dependencies": [
+    "plugin_api",
+    "org_common_data_center",
+    "org_common_device_registry"
+  ]
+}

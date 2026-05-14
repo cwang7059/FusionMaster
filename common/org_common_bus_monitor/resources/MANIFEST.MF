@@ -1,0 +1,7 @@
+Plugin-SymbolicName: org.common.bus.monitor
+Plugin-Version: 0.1.0
+Plugin-Name: Bus Monitor
+Plugin-Description: Common bus monitor plugin
+Plugin-Vendor: owner_a
+Plugin-ActivationPolicy: eager
+Plugin-Activator: BusMonitorActivator

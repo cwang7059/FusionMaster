@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Plugin-SymbolicName: org.common.eddy.current.panel
+Plugin-Version: 1.0.0
+Plugin-Name: org_common_eddy_current_panel
+Plugin-Description: Eddy current device right panel plugin
+Plugin-Vendor: Reycon
+Plugin-ActivationPolicy: eager
+Plugin-Activator: EddyCurrentPanelActivator

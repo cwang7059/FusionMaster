@@ -1,0 +1,8 @@
+Plugin-SymbolicName: org.common.record.replay
+Plugin-Version: 0.1.0
+Plugin-Name: Record Replay
+Plugin-Description: Common record replay plugin
+Plugin-Vendor: owner_a
+Plugin-ActivationPolicy: eager
+Plugin-Activator: RecordReplayActivator
+

@@ -1,0 +1,10 @@
+{
+  "name": "org_common_eddy_current_panel",
+  "version": "1.0.0",
+  "description": "Eddy current device right panel plugin",
+  "library": "org_common_eddy_current_panel",
+  "dependencies": [
+    "plugin_api",
+    "org_common_device_console"
+  ]
+}

@@ -1,0 +1,8 @@
+﻿{
+  "name": "org_common_record_replay",
+  "version": "0.1.0",
+  "author": "owner_a",
+  "description": "通用记录重演插件",
+  "dependencies": ["plugin_api"],
+  "library": "org_common_record_replay.dll"
+}

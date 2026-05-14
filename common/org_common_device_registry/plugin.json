@@ -1,0 +1,8 @@
+{
+  "name": "org_common_device_registry",
+  "version": "0.1.0",
+  "author": "owner_a",
+  "description": "设备注册中心插件，统一注册和查找设备适配器",
+  "dependencies": ["plugin_api"],
+  "library": "org_common_device_registry"
+}

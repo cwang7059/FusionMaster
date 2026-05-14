@@ -1,0 +1,7 @@
+Plugin-SymbolicName: org.common.net.receiver
+Plugin-Version: 0.1.0
+Plugin-Name: Net Receiver
+Plugin-Description: Common TCP/UDP receiver plugin
+Plugin-Vendor: owner_a
+Plugin-ActivationPolicy: eager
+Plugin-Activator: NetReceiverActivator

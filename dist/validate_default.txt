@@ -1,0 +1,53 @@
+﻿验证时间: 2026-04-29 16:04:31
+Profile: C:\ZYL\workspace\persion\osgi_business_dev\profiles\default.json
+BuildDir: build_vs16_qt5
+BuildConfig: Release
+RuntimeBin: C:\ZYL\workspace\persion\osgi_business_dev\build_vs16_qt5\bin\Release
+AppPath: C:\ZYL\workspace\persion\osgi_business_dev\build_vs16_qt5\bin\Release\app.exe
+
+插件总数: 23
+选中插件: 20
+
+选中插件明细:
+- org_business_eddy_current_device_adapter | plugins_business/org_business_eddy_current_device_adapter | 运行库=缺失 | -
+- org_business_encoder55aa_device_adapter | plugins_business/org_business_encoder55aa_device_adapter | 运行库=缺失 | -
+- org_business_fast_mirror_device_adapter | plugins_business/org_business_fast_mirror_device_adapter | 运行库=缺失 | -
+- org_business_temp_rtsp_player | plugins_business/org_business_temp_rtsp_player | 运行库=缺失 | -
+- org_business_turntable_device_adapter | plugins_business/org_business_turntable_device_adapter | 运行库=缺失 | -
+- org_common_bus_monitor | common/org_common_bus_monitor | 运行库=缺失 | -
+- org_common_data_center | common/org_common_data_center | 运行库=缺失 | -
+- org_common_debug_assistant | common/org_common_debug_assistant | 运行库=缺失 | -
+- org_common_device_console | common/org_common_device_console | 运行库=缺失 | -
+- org_common_device_registry | common/org_common_device_registry | 运行库=缺失 | -
+- org_common_eddy_current_panel | common/org_common_eddy_current_panel | 运行库=缺失 | -
+- org_common_encoder_panel | common/org_common_encoder_panel | 运行库=缺失 | -
+- org_common_fast_mirror_panel | common/org_common_fast_mirror_panel | 运行库=缺失 | -
+- org_common_log_viewer | common/org_common_log_viewer | 运行库=缺失 | -
+- org_common_net_receiver | common/org_common_net_receiver | 运行库=缺失 | -
+- org_common_record_replay | common/org_common_record_replay | 运行库=缺失 | -
+- org_common_rtsp_player | common/org_common_rtsp_player | 运行库=缺失 | -
+- org_common_rtsp_replay | common/org_common_rtsp_replay | 运行库=缺失 | -
+- org_common_serial_receiver | common/org_common_serial_receiver | 运行库=缺失 | -
+- org_common_turntable_panel | common/org_common_turntable_panel | 运行库=缺失 | -
+
+错误:
+- 插件运行库缺失: org_business_eddy_current_device_adapter (plugins_business/org_business_eddy_current_device_adapter)
+- 插件运行库缺失: org_business_encoder55aa_device_adapter (plugins_business/org_business_encoder55aa_device_adapter)
+- 插件运行库缺失: org_business_fast_mirror_device_adapter (plugins_business/org_business_fast_mirror_device_adapter)
+- 插件运行库缺失: org_business_temp_rtsp_player (plugins_business/org_business_temp_rtsp_player)
+- 插件运行库缺失: org_business_turntable_device_adapter (plugins_business/org_business_turntable_device_adapter)
+- 插件运行库缺失: org_common_bus_monitor (common/org_common_bus_monitor)
+- 插件运行库缺失: org_common_data_center (common/org_common_data_center)
+- 插件运行库缺失: org_common_debug_assistant (common/org_common_debug_assistant)
+- 插件运行库缺失: org_common_device_console (common/org_common_device_console)
+- 插件运行库缺失: org_common_device_registry (common/org_common_device_registry)
+- 插件运行库缺失: org_common_eddy_current_panel (common/org_common_eddy_current_panel)
+- 插件运行库缺失: org_common_encoder_panel (common/org_common_encoder_panel)
+- 插件运行库缺失: org_common_fast_mirror_panel (common/org_common_fast_mirror_panel)
+- 插件运行库缺失: org_common_log_viewer (common/org_common_log_viewer)
+- 插件运行库缺失: org_common_net_receiver (common/org_common_net_receiver)
+- 插件运行库缺失: org_common_record_replay (common/org_common_record_replay)
+- 插件运行库缺失: org_common_rtsp_player (common/org_common_rtsp_player)
+- 插件运行库缺失: org_common_rtsp_replay (common/org_common_rtsp_replay)
+- 插件运行库缺失: org_common_serial_receiver (common/org_common_serial_receiver)
+- 插件运行库缺失: org_common_turntable_panel (common/org_common_turntable_panel)

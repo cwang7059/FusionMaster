@@ -1,0 +1,7 @@
+Plugin-SymbolicName: org.common.rtsp.replay
+Plugin-Version: 0.1.0
+Plugin-Name: RTSP Replay
+Plugin-Description: Common RTSP receiver for record/replay
+Plugin-Vendor: owner_a
+Plugin-ActivationPolicy: eager
+Plugin-Activator: RtspReplayActivator

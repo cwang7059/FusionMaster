@@ -1,0 +1,8 @@
+{
+  "name": "org_common_bus_monitor",
+  "version": "0.1.0",
+  "author": "owner_a",
+  "description": "Common 消息总线监视插件",
+  "dependencies": ["plugin_api"],
+  "library": "org_common_bus_monitor.dll"
+}

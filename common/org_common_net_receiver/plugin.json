@@ -1,0 +1,8 @@
+﻿{
+  "name": "org_common_net_receiver",
+  "version": "0.1.0",
+  "author": "owner_a",
+  "description": "Common 网络接收插件（TCP/UDP）",
+  "dependencies": ["plugin_api"],
+  "library": "org_common_net_receiver.dll"
+}

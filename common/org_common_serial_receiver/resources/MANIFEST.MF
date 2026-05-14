@@ -1,0 +1,7 @@
+Plugin-SymbolicName: org.common.serial.receiver
+Plugin-Version: 0.1.0
+Plugin-Name: Serial Receiver
+Plugin-Description: Common serial port receiver plugin
+Plugin-Vendor: owner_a
+Plugin-ActivationPolicy: eager
+Plugin-Activator: SerialReceiverActivator

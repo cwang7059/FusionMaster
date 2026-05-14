@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/org.common.device.console/qml">
+        <file alias="DeviceConsoleView.qml">../qml/DeviceConsoleView.qml</file>
+        <file alias="DeviceConsoleRightPanel.qml">../qml/DeviceConsoleRightPanel.qml</file>
+        <file alias="CommandHistoryPanel.qml">../qml/CommandHistoryPanel.qml</file>
+    </qresource>
+    <qresource prefix="/org.common.device.console/META-INF">
+        <file alias="MANIFEST.MF">MANIFEST.MF</file>
+    </qresource>
+</RCC>

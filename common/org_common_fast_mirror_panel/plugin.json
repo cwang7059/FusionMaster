@@ -1,0 +1,10 @@
+{
+  "name": "org_common_fast_mirror_panel",
+  "version": "1.0.0",
+  "description": "Fast mirror device right panel plugin",
+  "library": "org_common_fast_mirror_panel",
+  "dependencies": [
+    "plugin_api",
+    "org_common_device_console"
+  ]
+}

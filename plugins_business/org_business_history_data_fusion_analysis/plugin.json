@@ -1,0 +1,11 @@
+{
+  "name": "org_business_history_data_fusion_analysis",
+  "version": "1.0.0",
+  "author": "JH Frontiers",
+  "description": "历史多批次试验数据融合分析插件",
+  "dependencies": [
+    "plugin_api",
+    "org_common_data_center"
+  ],
+  "library": "org_business_history_data_fusion_analysis.dll"
+}

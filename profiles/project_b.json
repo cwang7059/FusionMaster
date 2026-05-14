@@ -1,0 +1,25 @@
+﻿{
+  "name": "项目B示例",
+  "description": "串口接入 + 示例插件的双屏布局示例",
+  "plugins": [
+    "org_common_serial_receiver",
+    "org_common_data_center",
+    "org_business_history_data_fusion_analysis",
+    "org_common_debug_assistant"
+  ],
+  "ui": {
+    "menuBarVisible": false,
+    "toolBarVisible": false,
+    "statusBarVisible": false,
+    "titleBarVisible": true,
+    "secondaryWindowEnabled": true,
+    "statusText": "项目B业务界面",
+    "regions": {
+      "top": false,
+      "left": false,
+      "center": true,
+      "right": false,
+      "bottom": false
+    }
+  }
+}

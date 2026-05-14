@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Plugin-SymbolicName: org_common_device_console
+Plugin-Version: 1.0.0
+Plugin-Name: org_common_device_console
+Plugin-Description: Generic device console plugin
+Plugin-Vendor: Reycon
+Plugin-ActivationPolicy: eager
+Plugin-Activator: DeviceConsoleActivator

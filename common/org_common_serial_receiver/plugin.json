@@ -1,0 +1,8 @@
+﻿{
+  "name": "org_common_serial_receiver",
+  "version": "0.1.0",
+  "author": "owner_a",
+  "description": "Common 串口接收插件",
+  "dependencies": ["plugin_api"],
+  "library": "org_common_serial_receiver.dll"
+}

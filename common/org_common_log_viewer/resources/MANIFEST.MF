@@ -1,0 +1,7 @@
+Plugin-SymbolicName: org.common.log.viewer
+Plugin-Version: 0.1.0
+Plugin-Name: Log Viewer
+Plugin-Description: Common log viewer plugin
+Plugin-Vendor: owner_a
+Plugin-ActivationPolicy: eager
+Plugin-Activator: LogViewerActivator

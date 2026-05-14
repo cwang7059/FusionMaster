@@ -1,0 +1,8 @@
+{
+  "name": "org_common_rtsp_player",
+  "version": "1.0.0",
+  "author": "owner_a",
+  "description": "订阅 RTSP 编码包并解码渲染，联动记录重演状态切流",
+  "dependencies": ["plugin_api"],
+  "library": "org_common_rtsp_player.dll"
+}

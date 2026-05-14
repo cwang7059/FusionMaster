@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Plugin-SymbolicName: org.common.encoder.panel
+Plugin-Version: 1.0.0
+Plugin-Name: org_common_encoder_panel
+Plugin-Description: Encoder device right panel plugin
+Plugin-Vendor: Reycon
+Plugin-ActivationPolicy: eager
+Plugin-Activator: EncoderPanelActivator
