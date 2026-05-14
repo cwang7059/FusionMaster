@@ -93,7 +93,10 @@ if(WIN32)
         message(WARNING "app: windeployqt.exe not found, Qt runtime deployment may be incomplete")
     endif()
 
-    if(EXISTS "${OSGI_QT_SQLDRIVER_DIR}/qsqlite.dll" OR EXISTS "${OSGI_QT_SQLDRIVER_DIR}/qsqlited.dll")
+    if(EXISTS "${OSGI_QT_SQLDRIVER_DIR}/qsqlite.dll"
+       OR EXISTS "${OSGI_QT_SQLDRIVER_DIR}/qsqlited.dll"
+       OR EXISTS "${OSGI_QT_SQLDRIVER_DIR}/qsqlmysql.dll"
+       OR EXISTS "${OSGI_QT_SQLDRIVER_DIR}/qsqlmysqld.dll")
         add_custom_command(TARGET app POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:app>/sqldrivers"
             VERBATIM
@@ -113,6 +116,24 @@ if(WIN32)
                 COMMAND ${CMAKE_COMMAND} -E copy_if_different
                     "${OSGI_QT_SQLDRIVER_DIR}/qsqlited.dll"
                     "$<TARGET_FILE_DIR:app>/sqldrivers/qsqlited.dll"
+                VERBATIM
+            )
+        endif()
+
+        if(EXISTS "${OSGI_QT_SQLDRIVER_DIR}/qsqlmysql.dll")
+            add_custom_command(TARGET app POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    "${OSGI_QT_SQLDRIVER_DIR}/qsqlmysql.dll"
+                    "$<TARGET_FILE_DIR:app>/sqldrivers/qsqlmysql.dll"
+                VERBATIM
+            )
+        endif()
+
+        if(EXISTS "${OSGI_QT_SQLDRIVER_DIR}/qsqlmysqld.dll")
+            add_custom_command(TARGET app POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    "${OSGI_QT_SQLDRIVER_DIR}/qsqlmysqld.dll"
+                    "$<TARGET_FILE_DIR:app>/sqldrivers/qsqlmysqld.dll"
                 VERBATIM
             )
         endif()

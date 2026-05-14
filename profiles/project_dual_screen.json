@@ -3,6 +3,7 @@
   "description": "主屏显示主业务组件，副屏显示扩展组件",
   "plugins": [
     "org_common_data_center",
+    "org_common_data_repository",
     "org_business_history_data_fusion_analysis",
     "org_common_debug_assistant"
   ],

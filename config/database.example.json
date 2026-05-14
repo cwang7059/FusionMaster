@@ -1,0 +1,11 @@
+﻿{
+  "database": {
+    "driver": "QMYSQL",
+    "hostName": "127.0.0.1",
+    "port": 3306,
+    "databaseName": "fusionmaster",
+    "userName": "root",
+    "password": "",
+    "connectOptions": "MYSQL_OPT_RECONNECT=1"
+  }
+}

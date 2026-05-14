@@ -1,0 +1,7 @@
+﻿Plugin-SymbolicName: org.common.data.repository
+Plugin-Version: 0.1.0
+Plugin-Name: org_common_data_repository
+Plugin-Description: 鏁版嵁浠撳偍鏈嶅姟鎻掍欢
+Plugin-Vendor: owner_a
+Plugin-ActivationPolicy: eager
+Plugin-Activator: DataRepositoryActivator

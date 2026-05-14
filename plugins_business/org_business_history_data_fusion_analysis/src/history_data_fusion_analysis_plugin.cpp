@@ -3,6 +3,7 @@
 #include "history_data_fusion_controller.h"
 
 #include <plugin_api/idata_model_center.h>
+#include <plugin_api/idata_repository.h>
 #include <plugin_api/iplugin_manager.h>
 
 #include <QDebug>
@@ -72,6 +73,14 @@ void HistoryDataFusionAnalysisPlugin::start() {
         dataModelCenter_->registerModel(model_.get());
     } else {
         qWarning() << "[HISTORY_FUSION] data_model_center service not found";
+    }
+
+    auto* dataRepository = manager->getService<IDataRepository>(QStringLiteral("data_repository"));
+    if (dataRepository != nullptr && dataRepository->isOpen()) {
+        qInfo() << "[HISTORY_FUSION] data_repository service ready"
+                << dataRepository->defaultOptions().value(QStringLiteral("databaseName")).toString();
+    } else {
+        qWarning() << "[HISTORY_FUSION] data_repository service not ready";
     }
 
     manager->registerService<QObject>(

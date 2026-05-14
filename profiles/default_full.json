@@ -4,6 +4,7 @@
   "plugins": [
     "org_common_bus_monitor",
     "org_common_data_center",
+    "org_common_data_repository",
     "org_common_debug_assistant",
     "org_common_device_registry",
     "org_common_log_viewer",

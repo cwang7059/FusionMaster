@@ -54,6 +54,7 @@ common/**/*.ilk
 # Logs and temp
 *.log
 logs/
+config/database.json
 *.tmp
 *.temp
 *.cache

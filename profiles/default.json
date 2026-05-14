@@ -3,6 +3,7 @@
   "description": "临时仅加载历史数据融合分析及其必要依赖",
   "plugins": [
     "org_common_data_center",
+    "org_common_data_repository",
     "org_business_history_data_fusion_analysis"
   ],
   "ui": {

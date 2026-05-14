@@ -1,0 +1,8 @@
+﻿{
+  "name": "org_common_data_repository",
+  "version": "0.1.0",
+  "author": "owner_a",
+  "description": "鏁版嵁浠撳偍鏈嶅姟鎻掍欢锛岀粺涓€鎻愪緵鏁版嵁搴撹繛鎺ャ€佹煡璇€佷簨鍔″拰鎸佷箙鍖栧叆鍙?,
+  "dependencies": ["plugin_api"],
+  "library": "org_common_data_repository"
+}

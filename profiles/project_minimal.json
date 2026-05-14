@@ -3,6 +3,7 @@
   "description": "仅保留中心业务区，隐藏菜单栏/工具栏/状态栏",
   "plugins": [
     "org_common_data_center",
+    "org_common_data_repository",
     "org_business_history_data_fusion_analysis"
   ],
   "ui": {

@@ -5,7 +5,8 @@
   "description": "历史多批次试验数据融合分析插件",
   "dependencies": [
     "plugin_api",
-    "org_common_data_center"
+    "org_common_data_center",
+    "org_common_data_repository"
   ],
   "library": "org_business_history_data_fusion_analysis.dll"
 }

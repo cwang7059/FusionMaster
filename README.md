@@ -21,7 +21,24 @@ FusionMaster 是一个基于 Qt/QML 与插件化框架构建的试验数据融�
 
 - `org_business_history_data_fusion_analysis`
 
-其他业务插件源码已移除，默认配置只加载数据中心和历史数据融合分析插件。
+其他业务插件源码已移除，默认配置只加载数据中心、数据仓储和历史数据融合分析插件。
+
+## 开发文档
+
+- [六业务 Tab 插件化开发流程](docs/pluginized-business-tabs-development-flow.md)：整理数据库仓储插件、六个业务 Tab 插件、共享 UI 模块的分阶段改造步骤。
+
+## MySQL 配置
+
+数据仓储插件 `org_common_data_repository` 默认使用 Qt SQL 的 `QMYSQL` 驱动。连接参数可通过 `config/database.json` 或环境变量配置，示例见 [database.example.json](config/database.example.json)。
+
+支持的环境变量：
+
+- `FUSIONMASTER_DB_HOST`
+- `FUSIONMASTER_DB_PORT`
+- `FUSIONMASTER_DB_NAME`
+- `FUSIONMASTER_DB_USER`
+- `FUSIONMASTER_DB_PASSWORD`
+- `FUSIONMASTER_DB_CONNECT_OPTIONS`
 
 ## 环境要求
 
@@ -54,6 +71,7 @@ cmake --build build_codex_qt5 --config Debug --target app
 默认 profile：
 
 - 加载 `org_common_data_center`
+- 加载 `org_common_data_repository`
 - 加载 `org_business_history_data_fusion_analysis`
 - 启用原型顶部导航和底部状态栏
 
@@ -75,4 +93,4 @@ cmake --build build_codex_qt5 --config Debug --target app
 - Debug 版本构建通过
 - 默认配置启动成功
 - 6 个顶部导航界面可切换
-- 运行时只启动 `org_common_data_center` 与 `org_business_history_data_fusion_analysis`
+- 运行时启动 `org_common_data_center`、`org_common_data_repository` 与 `org_business_history_data_fusion_analysis`

@@ -4,6 +4,7 @@
   "plugins": [
     "org_common_serial_receiver",
     "org_common_data_center",
+    "org_common_data_repository",
     "org_business_history_data_fusion_analysis",
     "org_common_debug_assistant"
   ],
