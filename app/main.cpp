@@ -455,6 +455,27 @@ QString normalizeUiRegion(const QString& region) {
     return QStringLiteral("center");
 }
 
+QString normalizeUiSurface(const QString& surface) {
+    const QString value = surface.trimmed().toLower();
+    if (value == QStringLiteral("main_tab")
+        || value == QStringLiteral("panel")
+        || value == QStringLiteral("dialog")) {
+        return value;
+    }
+    return QStringLiteral("panel");
+}
+
+QVariantList toVariantList(const QStringList& values) {
+    QVariantList result;
+    for (const QString& value : values) {
+        const QString trimmed = value.trimmed();
+        if (!trimmed.isEmpty()) {
+            result.push_back(trimmed);
+        }
+    }
+    return result;
+}
+
 QString resolveUiQmlSource(const PluginManager::PluginDescriptor& descriptor, const QString& qmlSource) {
     const QString trimmed = qmlSource.trimmed();
     if (trimmed.isEmpty()) {
@@ -501,12 +522,17 @@ QVariantList collectUiContributions(
             QVariantMap row;
             row.insert(QStringLiteral("pluginName"), descriptor.name);
             row.insert(QStringLiteral("id"), id);
-            row.insert(
-                QStringLiteral("title"),
-                contribution.title.trimmed().isEmpty() ? descriptor.name : contribution.title.trimmed());
+            const QString title = contribution.title.trimmed().isEmpty() ? descriptor.name : contribution.title.trimmed();
+            const int navOrder = contribution.navOrder < 0 ? contribution.order : contribution.navOrder;
+            row.insert(QStringLiteral("title"), title);
+            row.insert(QStringLiteral("surface"), normalizeUiSurface(contribution.surface));
             row.insert(QStringLiteral("region"), normalizeUiRegion(contribution.region));
             row.insert(QStringLiteral("screenIndex"), normalizeUiScreenIndex(contribution.screenIndex));
             row.insert(QStringLiteral("order"), contribution.order);
+            row.insert(QStringLiteral("navText"), contribution.navText.trimmed().isEmpty() ? title : contribution.navText.trimmed());
+            row.insert(QStringLiteral("navIcon"), contribution.navIcon.trimmed());
+            row.insert(QStringLiteral("navOrder"), navOrder);
+            row.insert(QStringLiteral("requiredServices"), toVariantList(contribution.requiredServices));
             row.insert(QStringLiteral("qmlSource"), source);
             rows.push_back(row);
         }

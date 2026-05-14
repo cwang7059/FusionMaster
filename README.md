@@ -42,6 +42,10 @@ FusionMaster 是一个基于 Qt/QML 与插件化框架构建的试验数据融�
 - `FUSIONMASTER_DB_PASSWORD`
 - `FUSIONMASTER_DB_CONNECT_OPTIONS`
 
+## UI Contribution 元数据
+
+插件 UI 贡献已支持 `surface`、`navText`、`navIcon`、`navOrder`、`requiredServices` 等元数据。后续六个业务 Tab 插件将通过 `surface = "main_tab"` 接入主界面动态导航。
+
 ## 环境要求
 
 - Windows

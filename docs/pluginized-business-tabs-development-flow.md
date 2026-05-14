@@ -94,6 +94,8 @@ MySQL 配置示例：
 - `navOrder`：顶部导航排序。
 - `requiredServices`：可选，用于声明页面运行需要的服务。
 
+阶段 2 落地后，旧插件不填写新字段时默认按 `panel` 处理；只有声明 `surface = "main_tab"` 的贡献才会在阶段 3 被主界面动态 Tab 容器识别。
+
 建议步骤：
 
 1. 扩展 `core/plugin_api/include/plugin_api/iui_contribution.h`。
