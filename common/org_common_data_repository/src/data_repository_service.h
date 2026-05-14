@@ -36,6 +36,19 @@ public:
         const QVariantList& positionalValues = QVariantList(),
         const QString& connectionName = QString()) override;
 
+    DataRepositoryResult importRows(
+        const QString& tableName,
+        const QVariantList& rows,
+        const QString& connectionName = QString()) override;
+
+    DataRepositoryResult exportRows(
+        const QString& tableName,
+        const QStringList& columns = QStringList(),
+        const QString& whereClause = QString(),
+        const QVariantMap& namedValues = QVariantMap(),
+        const QVariantList& positionalValues = QVariantList(),
+        const QString& connectionName = QString()) override;
+
     bool beginTransaction(const QString& connectionName = QString(), QString* errorMessage = nullptr) override;
     bool commitTransaction(const QString& connectionName = QString(), QString* errorMessage = nullptr) override;
     bool rollbackTransaction(const QString& connectionName = QString(), QString* errorMessage = nullptr) override;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QString>
+#include <QStringList>
 #include <QVariant>
 #include <QVariantList>
 #include <QVariantMap>
@@ -32,6 +33,19 @@ public:
 
     virtual DataRepositoryResult query(
         const QString& sql,
+        const QVariantMap& namedValues = QVariantMap(),
+        const QVariantList& positionalValues = QVariantList(),
+        const QString& connectionName = QString()) = 0;
+
+    virtual DataRepositoryResult importRows(
+        const QString& tableName,
+        const QVariantList& rows,
+        const QString& connectionName = QString()) = 0;
+
+    virtual DataRepositoryResult exportRows(
+        const QString& tableName,
+        const QStringList& columns = QStringList(),
+        const QString& whereClause = QString(),
         const QVariantMap& namedValues = QVariantMap(),
         const QVariantList& positionalValues = QVariantList(),
         const QString& connectionName = QString()) = 0;

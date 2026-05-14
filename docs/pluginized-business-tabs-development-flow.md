@@ -74,6 +74,14 @@ MySQL 配置示例：
 }
 ```
 
+阶段 1 落地后的业务侧调用边界：
+
+- 查询：`query(sql, namedValues, positionalValues, connectionName)`。
+- 执行：`execute(sql, namedValues, positionalValues, connectionName)`。
+- 事务：`beginTransaction(...)`、`commitTransaction(...)`、`rollbackTransaction(...)`。
+- 数据集导入：`importRows(tableName, rows, connectionName)`，由仓储服务统一处理批量插入事务。
+- 数据集导出：`exportRows(tableName, columns, whereClause, namedValues, positionalValues, connectionName)`。
+
 ### 阶段 2：扩展 UI Contribution 元数据
 
 目标：让插件可以声明“我是主界面的一个业务 Tab”，主程序根据插件贡献动态生成顶部导航和页面内容。

@@ -31,6 +31,85 @@ QString sqlErrorText(const QSqlError& error) {
     return text.isEmpty() ? QStringLiteral("未知数据库错误") : text;
 }
 
+bool isSqlIdentifier(const QString& value) {
+    const QString text = value.trimmed();
+    if (text.isEmpty()) {
+        return false;
+    }
+
+    const auto isAlpha = [](const QChar ch) {
+        const ushort code = ch.unicode();
+        return (code >= 'A' && code <= 'Z') || (code >= 'a' && code <= 'z');
+    };
+    const auto isDigit = [](const QChar ch) {
+        const ushort code = ch.unicode();
+        return code >= '0' && code <= '9';
+    };
+
+    if (!isAlpha(text.at(0)) && text.at(0) != QLatin1Char('_')) {
+        return false;
+    }
+    for (int i = 1; i < text.size(); ++i) {
+        const QChar ch = text.at(i);
+        if (!isAlpha(ch) && !isDigit(ch) && ch != QLatin1Char('_')) {
+            return false;
+        }
+    }
+    return true;
+}
+
+QString quotedIdentifier(const QString& value) {
+    return QStringLiteral("`%1`").arg(value.trimmed());
+}
+
+bool appendValidatedIdentifier(QStringList* values, const QString& value, QString* errorMessage) {
+    const QString trimmed = value.trimmed();
+    if (!isSqlIdentifier(trimmed)) {
+        if (errorMessage != nullptr) {
+            *errorMessage = QStringLiteral("SQL 标识符不合法: %1").arg(value);
+        }
+        return false;
+    }
+    if (values != nullptr && !values->contains(trimmed)) {
+        values->push_back(trimmed);
+    }
+    return true;
+}
+
+QString buildInsertSql(const QString& tableName, const QStringList& columns) {
+    QStringList quotedColumns;
+    QStringList placeholders;
+    for (const QString& column : columns) {
+        quotedColumns.push_back(quotedIdentifier(column));
+        placeholders.push_back(QStringLiteral(":%1").arg(column));
+    }
+
+    return QStringLiteral("INSERT INTO %1 (%2) VALUES (%3)")
+        .arg(quotedIdentifier(tableName), quotedColumns.join(QStringLiteral(", ")), placeholders.join(QStringLiteral(", ")));
+}
+
+QString buildSelectSql(const QString& tableName, const QStringList& columns, const QString& whereClause) {
+    QString columnExpression = QStringLiteral("*");
+    if (!columns.isEmpty()) {
+        QStringList quotedColumns;
+        for (const QString& column : columns) {
+            quotedColumns.push_back(quotedIdentifier(column));
+        }
+        columnExpression = quotedColumns.join(QStringLiteral(", "));
+    }
+
+    QString sql = QStringLiteral("SELECT %1 FROM %2").arg(columnExpression, quotedIdentifier(tableName));
+    const QString trimmedWhere = whereClause.trimmed();
+    if (!trimmedWhere.isEmpty()) {
+        if (trimmedWhere.startsWith(QStringLiteral("where "), Qt::CaseInsensitive)) {
+            sql += QStringLiteral(" ") + trimmedWhere;
+        } else {
+            sql += QStringLiteral(" WHERE ") + trimmedWhere;
+        }
+    }
+    return sql;
+}
+
 }  // namespace
 
 DataRepositoryService::DataRepositoryService()
@@ -166,6 +245,119 @@ DataRepositoryResult DataRepositoryService::query(
     const QVariantList& positionalValues,
     const QString& connectionName) {
     return runStatement(sql, namedValues, positionalValues, connectionName, true);
+}
+
+DataRepositoryResult DataRepositoryService::importRows(
+    const QString& tableName,
+    const QVariantList& rows,
+    const QString& connectionName) {
+    QString errorMessage;
+    if (!appendValidatedIdentifier(nullptr, tableName, &errorMessage)) {
+        return errorResult(errorMessage);
+    }
+
+    if (rows.isEmpty()) {
+        DataRepositoryResult result;
+        result.ok = true;
+        result.affectedRows = 0;
+        return result;
+    }
+
+    QList<QVariantMap> rowMaps;
+    QStringList columns;
+    for (const QVariant& value : rows) {
+        const QVariantMap row = value.toMap();
+        if (row.isEmpty()) {
+            return errorResult(QStringLiteral("导入行不能为空，且必须为对象结构"));
+        }
+
+        for (auto it = row.constBegin(); it != row.constEnd(); ++it) {
+            if (!appendValidatedIdentifier(&columns, it.key(), &errorMessage)) {
+                return errorResult(errorMessage);
+            }
+        }
+        rowMaps.push_back(row);
+    }
+
+    if (columns.isEmpty()) {
+        return errorResult(QStringLiteral("导入字段不能为空"));
+    }
+
+    QMutexLocker locker(&mutex_);
+    QSqlDatabase database = databaseFor(connectionName, &errorMessage);
+    if (!database.isValid()) {
+        return errorResult(errorMessage);
+    }
+
+    if (!database.transaction()) {
+        return errorResult(sqlErrorText(database.lastError()));
+    }
+
+    const QString sql = buildInsertSql(tableName.trimmed(), columns);
+    int affectedRows = 0;
+    QVariant lastInsertId;
+
+    for (const QVariantMap& row : rowMaps) {
+        QSqlQuery statement(database);
+        if (!statement.prepare(sql)) {
+            database.rollback();
+            return errorResult(sqlErrorText(statement.lastError()));
+        }
+
+        QVariantMap values;
+        for (const QString& column : columns) {
+            values.insert(column, row.value(column));
+        }
+
+        if (!bindValues(statement, values, QVariantList(), &errorMessage)) {
+            database.rollback();
+            return errorResult(errorMessage);
+        }
+
+        if (!statement.exec()) {
+            database.rollback();
+            return errorResult(sqlErrorText(statement.lastError()));
+        }
+
+        const int rowAffected = statement.numRowsAffected();
+        if (rowAffected > 0) {
+            affectedRows += rowAffected;
+        }
+        lastInsertId = statement.lastInsertId();
+    }
+
+    if (!database.commit()) {
+        return errorResult(sqlErrorText(database.lastError()));
+    }
+
+    DataRepositoryResult result;
+    result.ok = true;
+    result.affectedRows = affectedRows;
+    result.lastInsertId = lastInsertId;
+    return result;
+}
+
+DataRepositoryResult DataRepositoryService::exportRows(
+    const QString& tableName,
+    const QStringList& columns,
+    const QString& whereClause,
+    const QVariantMap& namedValues,
+    const QVariantList& positionalValues,
+    const QString& connectionName) {
+    QString errorMessage;
+    if (!appendValidatedIdentifier(nullptr, tableName, &errorMessage)) {
+        return errorResult(errorMessage);
+    }
+
+    QStringList validatedColumns;
+    for (const QString& column : columns) {
+        if (!appendValidatedIdentifier(&validatedColumns, column, &errorMessage)) {
+            return errorResult(errorMessage);
+        }
+    }
+
+    const QString sql = buildSelectSql(tableName.trimmed(), validatedColumns, whereClause);
+    return query(sql, namedValues, positionalValues, connectionName);
 }
 
 bool DataRepositoryService::beginTransaction(const QString& connectionName, QString* errorMessage) {

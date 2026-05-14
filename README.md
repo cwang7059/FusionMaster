@@ -31,6 +31,8 @@ FusionMaster 是一个基于 Qt/QML 与插件化框架构建的试验数据融�
 
 数据仓储插件 `org_common_data_repository` 默认使用 Qt SQL 的 `QMYSQL` 驱动。连接参数可通过 `config/database.json` 或环境变量配置，示例见 [database.example.json](config/database.example.json)。
 
+业务插件通过 `IDataRepository` 使用统一的数据访问能力，包括 SQL 查询、执行、事务、数据集导入和数据集导出，不直接持有 MySQL 连接参数。
+
 支持的环境变量：
 
 - `FUSIONMASTER_DB_HOST`
