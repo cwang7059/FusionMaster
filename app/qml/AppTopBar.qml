@@ -40,13 +40,13 @@ Rectangle {
     signal toggleMaximizeRequested()
 
     function navItemCount() {
-        if (navItems && navItems.count !== undefined) {
+        if (navItems && navItems.count !== undefined && navItems.count > 0) {
             return navItems.count
         }
-        if (navItems && navItems.length !== undefined) {
+        if (navItems && navItems.length !== undefined && navItems.length > 0) {
             return navItems.length
         }
-        return 0
+        return 6
     }
 
     function fallbackNavItem(index) {
@@ -63,12 +63,12 @@ Rectangle {
 
     function navItemAt(index) {
         if (navItems && navItems.get) {
-            return navItems.get(index) || ({ "icon": "", "text": "" })
+            return navItems.get(index) || fallbackNavItem(index)
         }
         if (navItems && navItems[index]) {
             return navItems[index]
         }
-        return { "icon": "", "text": "" }
+        return fallbackNavItem(index)
     }
 
     RowLayout {
@@ -247,7 +247,7 @@ Rectangle {
 
     Row {
         id: navOverlay
-        visible: navVisible && root.navItemCount() > 0
+        visible: navVisible
         z: 3
         height: 52
         spacing: 6

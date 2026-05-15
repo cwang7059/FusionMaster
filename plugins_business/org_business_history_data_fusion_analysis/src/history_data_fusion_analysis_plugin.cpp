@@ -114,7 +114,7 @@ QList<UiContribution> HistoryDataFusionAnalysisPlugin::contributions() const {
     UiContribution contribution;
     contribution.id = QStringLiteral("history_data_fusion_analysis.panel");
     contribution.title = QStringLiteral("历史数据融合分析");
-    contribution.surface = QStringLiteral("main_tab");
+    contribution.surface = QStringLiteral("panel");
     contribution.region = QStringLiteral("center");
     contribution.qmlSource = QStringLiteral("qml/HistoryDataFusionAnalysisView.qml");
     contribution.order = 330;
