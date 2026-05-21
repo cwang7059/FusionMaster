@@ -1,0 +1,5 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/org.business.system.overview/META-INF">
+  <file alias="MANIFEST.MF">MANIFEST.MF</file>
+</qresource>
+</RCC>

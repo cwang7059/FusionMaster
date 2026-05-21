@@ -4,7 +4,6 @@
   <file alias="qml/AppTopBar.qml">../qml/AppTopBar.qml</file>
   <file alias="qml/AppStatusBar.qml">../qml/AppStatusBar.qml</file>
   <file alias="qml/AppMainContent.qml">../qml/AppMainContent.qml</file>
-  <file alias="qml/SystemOverviewView.qml">../qml/SystemOverviewView.qml</file>
   <file alias="qml/DataManagementView.qml">../qml/DataManagementView.qml</file>
   <file alias="qml/FusionAnalysisView.qml">../qml/FusionAnalysisView.qml</file>
   <file alias="qml/AlgorithmOptimizationView.qml">../qml/AlgorithmOptimizationView.qml</file>

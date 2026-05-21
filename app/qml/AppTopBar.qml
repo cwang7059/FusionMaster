@@ -46,29 +46,17 @@ Rectangle {
         if (navItems && navItems.length !== undefined && navItems.length > 0) {
             return navItems.length
         }
-        return 6
-    }
-
-    function fallbackNavItem(index) {
-        const labels = [
-            { "icon": "\u2302", "text": "首页总览" },
-            { "icon": "\u25A3", "text": "数据调取与管理" },
-            { "icon": "\u2387", "text": "多批次融合分析" },
-            { "icon": "\u2699", "text": "算法优选与建模" },
-            { "icon": "\u25A5", "text": "统计与可视化" },
-            { "icon": "\u2699", "text": "系统管理" }
-        ]
-        return labels[index] || ({ "icon": "", "text": "" })
+        return 0
     }
 
     function navItemAt(index) {
         if (navItems && navItems.get) {
-            return navItems.get(index) || fallbackNavItem(index)
+            return navItems.get(index) || null
         }
         if (navItems && navItems[index]) {
             return navItems[index]
         }
-        return fallbackNavItem(index)
+        return null
     }
 
     RowLayout {
@@ -259,7 +247,7 @@ Rectangle {
             model: root.navItemCount()
 
             Rectangle {
-                property var navItem: root.navItemAt(index)
+                property var navItem: root.navItemAt(index) || ({})
                 property string navIcon: navItem.icon || ""
                 property string navText: navItem.text || ""
 

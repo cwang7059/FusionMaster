@@ -39,6 +39,8 @@ ApplicationWindow {
     property var uiSecondaryCenterContributions: []
     property var uiSecondaryRightContributions: []
     property var uiSecondaryBottomContributions: []
+    property var mainTabContributions: []
+    property var topNavItems: []
     property string currentTimeText: ""
     property bool topRowVisible: true
     property bool topLogoVisible: true
@@ -47,7 +49,7 @@ ApplicationWindow {
     property bool topWindowButtonsVisible: true
     property bool topTimeVisible: true
     property int currentTabIndex: 0
-    property int topNavItemCount: topNavModel.count
+    property int topNavItemCount: topNavItems ? topNavItems.length : 0
 
     function ensureCurrentTabIndexValid() {
         if (currentTabIndex < 0 || currentTabIndex >= topNavItemCount) {
@@ -68,6 +70,7 @@ ApplicationWindow {
         const targetScreenIndex = Math.max(0, Number(screenIndex || 0))
 
         return uiContributionsModel.filter(function(item) {
+            const itemSurface = (item.surface || "panel").toLowerCase()
             const itemRegion = (item.region || "center").toLowerCase()
             const itemScreenIndex = Math.max(0, Number(item.screenIndex || 0))
             const contributionId = item.id || ""
@@ -75,10 +78,87 @@ ApplicationWindow {
             const contributionVisible = windowManager
                     ? windowManager.isContributionVisible(contributionId)
                     : true
-            return itemRegion === targetRegion
+            return itemSurface === "panel"
+                    && itemRegion === targetRegion
                     && itemScreenIndex === targetScreenIndex
                     && regionVisible
                     && contributionVisible
+        })
+    }
+
+    function contributionSortValue(item, key, fallback) {
+        if (!item || item[key] === undefined || item[key] === null) {
+            return fallback
+        }
+        const value = Number(item[key])
+        return isNaN(value) ? fallback : value
+    }
+
+    function contributionNavOrder(item) {
+        const navOrder = contributionSortValue(item, "navOrder", -1)
+        if (navOrder >= 0) {
+            return navOrder
+        }
+        return contributionSortValue(item, "order", 0)
+    }
+
+    function sortMainTabContribution(lhs, rhs) {
+        const lhsNavOrder = contributionNavOrder(lhs)
+        const rhsNavOrder = contributionNavOrder(rhs)
+        if (lhsNavOrder !== rhsNavOrder) {
+            return lhsNavOrder - rhsNavOrder
+        }
+
+        const lhsOrder = contributionSortValue(lhs, "order", 0)
+        const rhsOrder = contributionSortValue(rhs, "order", 0)
+        if (lhsOrder !== rhsOrder) {
+            return lhsOrder - rhsOrder
+        }
+
+        const lhsPlugin = String((lhs && lhs.pluginName) || "")
+        const rhsPlugin = String((rhs && rhs.pluginName) || "")
+        if (lhsPlugin !== rhsPlugin) {
+            return lhsPlugin < rhsPlugin ? -1 : 1
+        }
+
+        const lhsId = String((lhs && lhs.id) || "")
+        const rhsId = String((rhs && rhs.id) || "")
+        if (lhsId !== rhsId) {
+            return lhsId < rhsId ? -1 : 1
+        }
+        return 0
+    }
+
+    function filterMainTabContributions() {
+        if (typeof uiContributionsModel === "undefined" || !uiContributionsModel) {
+            return []
+        }
+
+        const tabs = uiContributionsModel.filter(function(item) {
+            const itemSurface = (item.surface || "panel").toLowerCase()
+            const itemScreenIndex = Math.max(0, Number(item.screenIndex || 0))
+            const contributionId = item.id || ""
+            const contributionVisible = windowManager
+                    ? windowManager.isContributionVisible(contributionId)
+                    : true
+            return itemSurface === "main_tab"
+                    && itemScreenIndex === 0
+                    && contributionVisible
+                    && (item.qmlSource || "") !== ""
+        })
+        tabs.sort(sortMainTabContribution)
+        return tabs
+    }
+
+    function buildTopNavItems(contributions) {
+        if (!contributions || contributions.length === 0) {
+            return []
+        }
+        return contributions.map(function(item) {
+            return {
+                "icon": item.navIcon || "",
+                "text": item.navText || item.title || item.id || ""
+            }
         })
     }
 
@@ -94,6 +174,10 @@ ApplicationWindow {
         uiSecondaryCenterContributions = filterUiContributionsByScreen("center", 1)
         uiSecondaryRightContributions = filterUiContributionsByScreen("right", 1)
         uiSecondaryBottomContributions = filterUiContributionsByScreen("bottom", 1)
+
+        mainTabContributions = filterMainTabContributions()
+        topNavItems = buildTopNavItems(mainTabContributions)
+        ensureCurrentTabIndexValid()
     }
 
     function refreshTopRowVisibility() {
@@ -101,7 +185,7 @@ ApplicationWindow {
             topRowVisible = true
             topLogoVisible = true
             topTitleVisible = true
-            topNavVisible = true
+            topNavVisible = topNavItemCount > 0
             topWindowButtonsVisible = true
             topTimeVisible = true
             return
@@ -112,7 +196,7 @@ ApplicationWindow {
         topLogoVisible = windowManager.isContributionVisible("app.top.logo")
         topTitleVisible = windowManager.isContributionVisible("app.top.title")
         topNavVisible = windowManager.isContributionVisible("app.top.nav")
-                || topNavItemCount > 0
+                && topNavItemCount > 0
         topWindowButtonsVisible = windowManager.isContributionVisible("app.top.window_buttons")
         topTimeVisible = windowManager.isContributionVisible("app.top.time")
     }
@@ -418,17 +502,6 @@ ApplicationWindow {
         }
     }
 
-    ListModel {
-        id: topNavModel
-
-        ListElement { icon: "\u2302"; text: "首页总览" }
-        ListElement { icon: "\u25A3"; text: "数据调取与管理" }
-        ListElement { icon: "\u2387"; text: "多批次融合分析" }
-        ListElement { icon: "\u2699"; text: "算法优选与建模" }
-        ListElement { icon: "\u25A5"; text: "统计与可视化" }
-        ListElement { icon: "\u2699"; text: "系统管理" }
-    }
-
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 0
@@ -444,7 +517,7 @@ ApplicationWindow {
             navVisible: topNavVisible
             windowButtonsVisible: topWindowButtonsVisible
             timeVisible: false
-            navItems: topNavModel
+            navItems: topNavItems
             currentNavIndex: currentTabIndex
             maximized: windowMaximized
             timeText: currentTimeText
@@ -465,6 +538,7 @@ ApplicationWindow {
             skippedPluginsTextValue: skippedPluginsText
             lifecycleWarningsTextValue: lifecycleWarningsText
             uiContributionsData: uiContributionsModel
+            mainTabContributionsData: mainTabContributions
             topContributions: uiTopContributions
             leftContributions: uiLeftContributions
             centerContributions: uiCenterContributions

@@ -1,0 +1,7 @@
+Plugin-SymbolicName: org.business.system.overview
+Plugin-Version: 1.0.0
+Plugin-Name: System Overview
+Plugin-Description: System overview business tab plugin
+Plugin-Vendor: JH Frontiers
+Plugin-ActivationPolicy: eager
+Plugin-Activator: SystemOverviewActivator

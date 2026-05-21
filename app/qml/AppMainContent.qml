@@ -17,11 +17,22 @@ Rectangle {
     property string skippedPluginsTextValue: ""
     property string lifecycleWarningsTextValue: ""
     property var uiContributionsData: []
+    property var mainTabContributionsData: []
     property var topContributions: []
     property var leftContributions: []
     property var centerContributions: []
     property var rightContributions: []
     property var bottomContributions: []
+    readonly property int mainTabCount: mainTabContributionsData ? mainTabContributionsData.length : 0
+    readonly property int activeMainTabIndex: mainTabCount > 0
+            ? Math.max(0, Math.min(activeTabIndex, mainTabCount - 1))
+            : -1
+    readonly property var activeMainTab: activeMainTabIndex >= 0
+            ? (mainTabContributionsData[activeMainTabIndex] || null)
+            : null
+    readonly property string activeMainTabSource: activeMainTab && activeMainTab.qmlSource
+            ? activeMainTab.qmlSource
+            : ""
 
     signal businessPureUiRequested()
 
@@ -61,38 +72,63 @@ Rectangle {
         return ""
     }
 
-    StackLayout {
+    Item {
         anchors.fill: parent
-        currentIndex: Math.max(0, Math.min(root.activeTabIndex, 5))
 
-        SystemOverviewView {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+        Loader {
+            id: mainTabLoader
+            anchors.fill: parent
+            active: root.activeMainTabSource.length > 0
+            source: root.activeMainTabSource
+            visible: status === Loader.Ready
+
+            onStatusChanged: {
+                if (status === Loader.Error) {
+                    console.warn("[APP] Failed to load business tab:", root.activeMainTabSource)
+                }
+            }
         }
 
-        DataManagementView {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+        Rectangle {
+            anchors.fill: parent
+            color: root.color
+            visible: root.mainTabCount === 0
+
+            Text {
+                anchors.centerIn: parent
+                color: Theme.textSecondary
+                font.pixelSize: Theme.fontSizeLarge
+                text: "未加载业务页面"
+            }
         }
 
-        FusionAnalysisView {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-        }
+        Rectangle {
+            anchors.fill: parent
+            color: root.color
+            visible: root.mainTabCount > 0 && mainTabLoader.status === Loader.Error
 
-        AlgorithmOptimizationView {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-        }
+            Column {
+                anchors.centerIn: parent
+                spacing: 8
 
-        StatisticsView {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-        }
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    color: Theme.textPrimary
+                    font.pixelSize: Theme.fontSizeLarge
+                    font.bold: true
+                    text: "业务页面加载失败"
+                }
 
-        SystemSettingsView {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: Math.min(520, root.width - 80)
+                    horizontalAlignment: Text.AlignHCenter
+                    elide: Text.ElideMiddle
+                    color: Theme.textSecondary
+                    font.pixelSize: Theme.fontSizeSmall
+                    text: root.activeMainTabSource
+                }
+            }
         }
     }
 }

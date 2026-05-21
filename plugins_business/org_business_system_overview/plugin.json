@@ -1,0 +1,8 @@
+{
+  "name": "org_business_system_overview",
+  "version": "1.0.0",
+  "author": "JH Frontiers",
+  "description": "System overview business tab plugin",
+  "dependencies": ["plugin_api"],
+  "library": "org_business_system_overview.dll"
+}

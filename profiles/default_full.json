@@ -14,6 +14,7 @@
     "org_common_rtsp_replay",
     "org_common_serial_receiver",
     "org_common_device_console",
+    "org_business_system_overview",
     "org_business_history_data_fusion_analysis",
     "org_common_eddy_current_panel",
     "org_common_encoder_panel",

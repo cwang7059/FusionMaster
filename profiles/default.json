@@ -4,6 +4,7 @@
   "plugins": [
     "org_common_data_center",
     "org_common_data_repository",
+    "org_business_system_overview",
     "org_business_history_data_fusion_analysis"
   ],
   "ui": {
@@ -12,7 +13,7 @@
     "statusBarVisible": true,
     "titleBarVisible": true,
     "secondaryWindowEnabled": false,
-    "statusText": "历史数据融合分析",
+    "statusText": "试验数据融合分析平台",
     "regions": {
       "top": false,
       "left": false,
@@ -34,6 +35,7 @@
       "app.top.nav": true,
       "app.top.window_buttons": true,
       "app.top.time": false,
+      "system_overview.main_tab": true,
       "history_data_fusion_analysis.panel": true
     },
     "menuActions": [],
